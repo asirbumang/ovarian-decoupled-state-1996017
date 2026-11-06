@@ -10,9 +10,9 @@ plasma cells and fibroblasts in ovarian cancer**
 ```
 code_repository/
 ├── 00_gene_sets/            M1-M4, ICC45_full/shared28/unique17, random-set generators
-├── 01_bulk/                 bulk cohorts, deconvolution, survival, meta-analysis
+├── 01_bulk/                 bulk cohorts, deconvolution, survival, meta-analysis;
+│                            spatial and GeoMx scripts (28*): Visium, NMF, NNLS, Moran, COMMOT
 ├── 02_single_cell/          scoring, carriers, CNV, trajectory, TF perturbation, drug sensitivity
-├── 03_spatial/              Visium processing, NMF domains, NNLS, Moran, COMMOT
 ├── 04_revision/             new analyses added in revision (null models, UCell, depth adjustment,
 │                            nested CV, pseudotime robustness, clinical meta-analysis)
 ├── 05_figures/              figure-generation scripts
@@ -27,7 +27,7 @@ code_repository/
 3. `01_bulk/03_external_survival_meta.R` – external cohorts and meta-analysis.
 4. `02_single_cell/20a_score_gse266577.R` – primary reference module scores.
 5. `02_single_cell/44*`–`47*` – figures and carrier analyses.
-6. `03_spatial/28*` – Visium, NMF, NNLS, Moran, COMMOT.
+6. `01_bulk/28*` – Visium, NMF, NNLS, Moran, COMMOT.
 7. `04_revision/A1*`–`A7*` – null models, sensitivity, technical adjustment, UCell, nested CV,
    pseudotime robustness, meta-analysis (new in revision).
 
@@ -47,8 +47,8 @@ code_repository/
 ## Data
 
 All data are public (GEO accessions in Table 1). Processed module-score tables, state calls,
-NNLS bootstraps, COMMOT permutations and meta-analysis inputs are provided in `data_processed/`
-or available from the corresponding author.
+NNLS bootstraps, COMMOT permutations and meta-analysis inputs are available from the corresponding
+author on reasonable request; the scripts that generate them are in this repository.
 
 ## Software
 
