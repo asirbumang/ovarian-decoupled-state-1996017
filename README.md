@@ -20,15 +20,17 @@ code_repository/
 └── README.md
 ```
 
+A complete file manifest is provided as `MANIFEST.txt`.
+
 ## Order of execution
 
-1. `00_gene_sets/build_gene_sets.R` – builds `mitoxy_sets.RDS` from the published mechanism genes.
+1. `00_gene_sets/gene_sets_long.csv` and `00_gene_sets/mitoxy_four_modules.gmt` – gene sets used for module scoring.
 2. `01_bulk/00_track0_tcga.R` – TCGA-OV module scores, state calls, survival.
 3. `01_bulk/03_external_survival_meta.R` – external cohorts and meta-analysis.
 4. `02_single_cell/20a_score_gse266577.R` – primary reference module scores.
 5. `02_single_cell/44*`–`47*` – figures and carrier analyses.
 6. `01_bulk/28*` – Visium, NMF, NNLS, Moran, COMMOT.
-7. `04_revision/A1*`–`A7*` – null models, sensitivity, technical adjustment, UCell, nested CV,
+7. `04_revision/A1*`–`A8*` – null models, sensitivity, technical adjustment, UCell, nested CV,
    pseudotime robustness, meta-analysis (new in revision).
 
 ## Key parameters

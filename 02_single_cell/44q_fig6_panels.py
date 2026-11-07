@@ -25,7 +25,7 @@ rows = [
     ("Drug screen (CTRPv2)", -1, "277/544 q<0.25"),
     ("CNV-malignant bridge", -1, "AUC 0.377 negative"),
     ("OS adjusted TCGA", +1, "HR 1.17 p=0.025 (exploratory)"),
-    ("OS external (dec_res)", 0, "all NS; pooled p=0.71"),
+    ("OS external (dec_res)", 0, "all NS; pooled p=0.14"),
 ]
 fig, ax = plt.subplots(figsize=(105/25.4, 78/25.4))
 Y = np.arange(len(rows))

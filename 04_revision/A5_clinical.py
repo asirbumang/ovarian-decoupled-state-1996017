@@ -5,8 +5,9 @@ A5: Clinical layer clarification.
       and without covariate adjustment in TCGA-OV;
  (ii) tertile log-rank kept separate from the continuous model;
  (iii) fixed-effect vs random-effects (DL and REML) pooling of the four
-      external cohorts, with I2, tau2 and a 95% prediction interval, given
-      I2 = 99.5%.
+      external cohorts, with I2, tau2 and a 95% prediction interval. The
+      previously reported I2 of 99.5% came from a non-standard formula; this
+      script uses the standard formula.
 """
 import json, os, math
 import numpy as np

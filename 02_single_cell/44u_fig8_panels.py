@@ -67,7 +67,7 @@ print("F8b saved", flush=True)
 ## c: 诚实声明卡（文字）
 text = ("Honest conclusions\n"
         "• OS association: TCGA-only exploratory (continuous HR 1.17, p=0.025 adjusted;\n"
-        "  3-tier logrank p=0.060); 4 external cohorts NS (pooled HR 1.02, p=0.71; I2=99.5%) - not reproducible\n"
+        "  3-tier logrank p=0.060); 4 external cohorts NS (pooled HR 0.91, p=0.14; I2=0%) - null\n"
         "• Treatment response: NS across 6 layers (chemo-naive/IDS, platinum, PARPi, ER/PR)\n"
         "• Composition adjustment: direction stable in OS (0.096->0.060) but reversed/weakened in response layers\n"
         "• What is robust: rare (1.2-2.9%), spatially-clustered, TF-controlled (NF-kB/IRF1/STAT1), drug-sensitive axis")
