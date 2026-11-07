@@ -217,7 +217,7 @@ p_e <- ggplot(md, aes(x=mod, y=val, fill=state, group=interaction(mod,state))) +
   geom_violin(position=position_dodge(0.7), width=0.65, scale="area", alpha=0.8, colour="grey30", linewidth=0.2) +
   scale_fill_manual(values=c("TRUE"=SIG,"FALSE"=GRA), name=NULL, labels=c("rest","state")) +
   labs(title="Module z by state (M1/M2/M3)", x=NULL, y="z-score",
-       caption="MWU p<1e-300 each (state n=1,751)") +
+       caption="Mann–Whitney P < 0.001 each (state n=1,751)") +
   theme_classic(base_size=6.5, base_family="Arial") +
   theme(plot.title=element_text(size=8,face="bold",hjust=0), plot.caption=element_text(size=6.5,colour="#333333",hjust=0),
         axis.title.y=element_text(size=6.5), axis.text=element_text(size=6.5),

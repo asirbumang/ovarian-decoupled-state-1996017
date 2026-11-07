@@ -131,7 +131,7 @@ samp <- data.frame(
   ds  = c("GSE266577","GSE222556","GSE201047","GSE180661*","GSE293459#","GSE26193",
           "GSE14764","GSE13876","GSE63885","GSE26712","TCGA-OV","GSE274657","GSE288483",
           "GSE224335","GSE189843"),
-  n   = c(137084,661491,106001,92000,62286,107,80,157,75,195,427,13629,15322,2410,4801),
+  n   = c(137083,661491,106001,92000,62286,107,80,157,75,195,427,13629,15322,2410,4801),
   lay = c("scRNA","scRNA","scRNA","scRNA","scRNA","bulk","bulk","bulk","bulk","bulk",
           "bulk","Vis","Vis","Vis","Vis"), stringsAsFactors = FALSE)
 samp$y <- rev(seq_len(nrow(samp)))

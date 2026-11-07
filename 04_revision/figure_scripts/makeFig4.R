@@ -44,8 +44,6 @@ md_line <- 0.160   # per user decision (data median = 0.1596)
 p_cm <- ggplot(m, aes(x = Moran_I, y = short)) +
   geom_vline(xintercept = md_line, linetype = 2, linewidth = 0.4, colour = "grey45") +
   geom_point(size = 2.0, colour = "#2C3E50") +
-  annotate("text", x = Inf, y = 0.3, hjust = 1.05, size = 2.12, family = "Arial",
-           label = sprintf("median %.3f; %d/%d p<0.05", md_line, sum(m$p < 0.05), nrow(m))) +
   scale_x_continuous(limits = c(0, 0.60), breaks = seq(0, 0.6, 0.2), expand = c(0.02, 0)) +
   scale_y_discrete(expand = c(0.03, 0.03)) +
   labs(x = "Moran's I", y = NULL, title = "Spatial autocorrelation (KNN)") +
@@ -70,7 +68,7 @@ p_cr <- ggplot(nb, aes(x = neigh_OR, y = short, fill = sig)) +
                     breaks = c(TRUE, FALSE), labels = c("p<0.05", "n.s.")) +
   scale_x_continuous(limits = c(0, 8.2), expand = c(0.02, 0)) +
   scale_y_discrete(expand = c(0.03, 0.03)) +
-  labs(x = "neighbourhood OR", y = NULL, title = "Malignant-spot enrichment") +
+  labs(x = "neighbourhood OR", y = NULL, title = "State-spot neighbourhood enrichment") +
   base_theme() +
   theme(plot.title = element_text(size = 6.5, face = "bold", hjust = 0),
         axis.text.y = element_text(size = 6.0),
@@ -80,10 +78,7 @@ p_cr <- ggplot(nb, aes(x = neigh_OR, y = short, fill = sig)) +
         legend.text = element_text(size = 6.0),
         legend.key.size = unit(0.24, "cm"),
         legend.margin = margin(0, 0, 0, 0),
-        plot.margin = margin(1, 1, 1, 1)) +
-  annotate("text", x = Inf, y = Inf, hjust = 1.05, vjust = 1.4, size = 2.12,
-           family = "Arial", colour = "#333333",
-           label = sprintf("8/%d OR>1; %d/%d sig.", nrow(nb), sum(nb$sig), nrow(nb)))
+        plot.margin = margin(1, 1, 1, 1))
 ## composite c = Moran|OR (flattened into the row to avoid patchwork nesting issues)
 
 ## ---- panel i : domain PCA (redrawn from domain*.csv) ----

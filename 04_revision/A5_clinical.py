@@ -50,16 +50,33 @@ res["tcga_continuous"] = [
     cox(d, ["dec_res_z", "age10", "resid_gt1cm"], "age + residual disease adjusted"),
     cox(d, ["dec_res_z", "age10", "resid_macro"], "age + gross residual (>20 mm) adjusted")]
 
-# tertile analysis, kept separate from the continuous model
+# equal-tertile analysis (sensitivity; 141/141/141), kept separate from the continuous model
 d["tier3"] = pd.qcut(d.dec_res, 3, labels=["Low", "Mid", "High"])
 lr = multivariate_logrank_test(d.os_days, d.tier3, d.event)
 res["tcga_tertile"] = {"logrank_p": float(lr.p_value), "n": int(len(d)),
-                       "n_by_tier": d.tier3.value_counts().sort_index().to_dict()}
+                       "n_by_tier": d.tier3.value_counts().sort_index().to_dict(),
+                       "note": "equal tertiles (sensitivity analysis); the manuscript uses the pre-specified P25/P75 cutoffs in tcga_predefined"}
 ct = CoxPHFitter().fit(d.assign(high=(d.tier3 == "High").astype(int))[
     ["os_days", "event", "high"]], "os_days", "event")
 s = ct.summary.loc["high"]
 res["tcga_tertile_cox_high_vs_rest"] = {"HR": float(s["exp(coef)"]), "CI_low": float(s["exp(coef) lower 95%"]),
                                         "CI_high": float(s["exp(coef) upper 95%"]), "p": float(s["p"])}
+
+# pre-specified P25/P75 groups used in the manuscript (106/211/106)
+q25, q75 = [float(x) for x in d.dec_res.quantile([0.25, 0.75])]
+d["tier_pre"] = pd.cut(d.dec_res, [-np.inf, q25, q75, np.inf], labels=["Low", "Mid", "High"])
+lr_pre = multivariate_logrank_test(d.os_days, d.tier_pre, d.event)
+res["tcga_predefined"] = {"logrank_p": float(lr_pre.p_value), "n": int(len(d)),
+                          "n_by_tier": d.tier_pre.value_counts().sort_index().to_dict(),
+                          "q25": q25, "q75": q75,
+                          "note": "manuscript groups: <=P25, P25-P75, >=P75 of dec_res"}
+d["tier_pre_num"] = d.tier_pre.map({"Low": 0, "Mid": 1, "High": 2}).astype(float)
+ctp = CoxPHFitter().fit(d[["os_days", "event", "tier_pre_num"]], "os_days", "event")
+sp = ctp.summary.loc["tier_pre_num"]
+res["tcga_predefined_trend"] = {"HR": float(sp["exp(coef)"]),
+                                "CI_low": float(sp["exp(coef) lower 95%"]),
+                                "CI_high": float(sp["exp(coef) upper 95%"]),
+                                "p": float(sp["p"])}
 
 # proportional hazards check for the adjusted model
 from lifelines.statistics import proportional_hazard_test

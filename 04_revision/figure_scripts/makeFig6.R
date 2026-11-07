@@ -21,7 +21,7 @@ p_a <- ggplot(summ, aes(y = y)) +
             hjust = 0, size = 2.28, fontface = "bold", family = "Arial") +
   scale_colour_manual(values = c(consistent = BLU, opposite = "#DC0000", NS = GRA),
                       name = NULL, breaks = c("consistent","opposite","NS"),
-                      labels = c("consistent","opposite","NS")) +
+                      labels = c("expected","opposite","no difference")) +
   scale_x_continuous(limits = c(0, 9.2), breaks = c(0, 2, 4, 6, 8), expand = c(0.02, 0.02)) +
   scale_y_continuous(limits = c(0.4, 3.8), breaks = NULL) +
   labs(x = NULL, y = NULL, title = "15 results: direction summary") +
@@ -61,7 +61,7 @@ p_g <- ggplot(data.frame()) +
            label = "0.87 [0.72-1.05]\np = 0.17") +
   scale_x_continuous(limits = c(0.4, 1.70), breaks = c(0.5, 1.0, 1.5)) +
   scale_y_continuous(limits = c(0.55, 1.45)) +
-  labs(x = "Hazard ratio", y = NULL, title = "Scissor") +
+  labs(x = "Odds ratio", y = NULL, title = "Scissor") +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
         axis.line.y = element_blank()) +
   base_theme() + labs(tag = "g")
